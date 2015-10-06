@@ -133,11 +133,16 @@ com.geertwille = {
                 prefix = ''
             }
 
+            var theFile = prefix + sliceName + suffix + ".png";
+            if (this.type == "android") {
+                theFile = prefix + suffix + ".png";
+            }
+
             // If we place the assets in the res folder don't place it in an assets/android folder
             if (this.baseDir.indexOf('/res') > -1 && this.type == "android") {
-                fileName = this.baseDir + "/" + name + "/" + prefix + sliceName + suffix + ".png";
+                fileName = this.baseDir + "/" + name + "/" + theFile;
             } else {
-                fileName = this.baseDir + "/assets/" + this.type + "/" + name + "/" + prefix+ sliceName + suffix + ".png";
+                fileName = this.baseDir + "/assets/" + this.type + "/" + name + "/" + theFile;
             }
 
             [(com.geertwille.document) saveArtboardOrSlice: version toFile:fileName];
